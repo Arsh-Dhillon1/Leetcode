@@ -40,8 +40,8 @@ public:
     }
     vector<int> searchRange(vector<int>& nums, int target) {
         vector<int> res;
-        res.push_back(firstOccurence(nums,target));
-        res.push_back(lastOccurence(nums,target));
-        return res;
+        int a=(firstOccurence(nums,target));
+        int b=(lastOccurence(nums,target));
+        return {a,b};
     }
 };
