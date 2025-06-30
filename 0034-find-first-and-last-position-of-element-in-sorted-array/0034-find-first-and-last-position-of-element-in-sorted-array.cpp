@@ -1,44 +1,47 @@
 class Solution {
-    long firstOccurence(vector<int>& arr, int target){
-        long low=0,high=arr.size() - 1,ans=-1;
-        while(low<=high){
-            long mid=(high+low)/2;
-            if(arr[mid]==target){
-                ans=mid;
-                high=mid-1;
-            }
-            else if(arr[mid]>target){
-                high=mid-1;
-            }
-            else if(arr[mid]<target){
-                low=mid+1;
-            }
-        }
-        return ans;
-    }
-    long lastOccurence(vector<int>& arr, int target){
-        long low=0,high=arr.size() - 1,ans=-1;
-        while(low<=high){
-            long mid=(high+low)/2;
-            if(arr[mid]==target){
-                ans=mid;
-                low=mid+1;
-            }
-            else if(arr[mid]>target){
-                high=mid-1;
-            }
-            else if(arr[mid]<target){
-                low=mid+1;
-            }
-        }
-        return ans;
-    }
-
 public:
-    vector<int> searchRange(vector<int>& arr, int target) {
+    int firstOccurence(vector<int>& arr,int target){
+        long ans=-1;
+        long low=0;
+        long high=arr.size()-1;
+        while(low<=high){
+            long mid=(high+low)/2;
+            if(arr[mid]==target){
+                ans=mid;
+                high=mid-1;
+            }
+            else if(arr[mid]>target){
+                high=mid-1;
+            }
+            else {
+                low=mid+1;
+            }
+        }
+        return ans;
+    }
+    int lastOccurence(vector<int>& arr,int target){
+        long ans=-1;
+        long low=0;
+        long high=arr.size()-1;
+        while(low<=high){
+            long mid=(high+low)/2;
+            if(arr[mid]==target){
+                ans=mid;
+                low=mid+1;
+            }
+            else if(arr[mid]>target){
+                high=mid-1;
+            }
+            else {
+                low=mid+1;
+            }
+        }
+        return ans;
+    }
+    vector<int> searchRange(vector<int>& nums, int target) {
         vector<int> res;
-        res.push_back(firstOccurence(arr,target));
-        res.push_back(lastOccurence(arr,target));
+        res.push_back(firstOccurence(nums,target));
+        res.push_back(lastOccurence(nums,target));
         return res;
     }
 };
