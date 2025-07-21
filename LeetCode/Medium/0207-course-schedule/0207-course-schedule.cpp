@@ -2,7 +2,7 @@ class Solution {
 public:
     bool canFinish(int V, vector<vector<int>>& edges) {
         vector<vector<int>> adj(V);
-        int count=0;
+        int count = 0;
         for (int i = 0; i < edges.size(); i++) {
             int u = edges[i][0];
             int v = edges[i][1];
@@ -16,7 +16,6 @@ public:
             }
         }
 
-        vector<int> ans;
         queue<int> q;
         for (int i = 0; i < indegree.size(); i++) {
             if (indegree[i] == 0) {
@@ -24,11 +23,10 @@ public:
             }
         }
 
-        while (q.size()>0) {
+        while (q.size() > 0) {
             int temp = q.front();
             q.pop();
             count++;
-            ans.push_back(temp);
 
             for (int j = 0; j < adj[temp].size(); j++) {
                 int neighbor = adj[temp][j];
@@ -38,7 +36,7 @@ public:
                 }
             }
         }
-        return count == V;
 
+        return count == V;
     }
 };
