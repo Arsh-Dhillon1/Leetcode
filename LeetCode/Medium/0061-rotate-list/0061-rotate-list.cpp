@@ -11,27 +11,26 @@
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
-        if(head==nullptr || head->next==nullptr || k==0) return head;
-        ListNode* tail = head;
-        int length=1;
-        while (tail->next) {
-            tail = tail->next;
-            length++;
-        }
-
-        // Step 2: Calculate effective rotations
-        k = k % length;
-        if (k == 0) return head;
-
+        if(head==nullptr || head->next==nullptr) return head;
+        ListNode* prev=nullptr;
         ListNode* start=head;
-
-        for(int i=1;i<length-k;i++){
+        int len=0;
+        ListNode* slow=nullptr;
+        ListNode* fast=head;
+        while(fast!=nullptr){
+            len++;
+            slow=fast;
+            fast=fast->next;
+        }
+        k=k%len;
+        if(k==0) return head;
+        int rotate=len-k;
+        for(int i=0;i<rotate;i++){
+            prev=start;
             start=start->next;
         }
-        ListNode* newstart=start->next;
-        start->next=NULL;
-        
-        tail->next=head;
-        return newstart;
+        prev->next=nullptr;
+        slow->next=head;
+        return start;
     }
 };
