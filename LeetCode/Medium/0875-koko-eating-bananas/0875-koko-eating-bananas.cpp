@@ -1,9 +1,9 @@
 class Solution {
 public:
-    bool func(vector<int>& piles, int mid, int h){
+    bool func(vector<int>& piles,int mid,int h){
         long hours=0;
         for(int i=0;i<piles.size();i++){
-            hours+=(piles[i] + mid - 1)/mid;
+            hours+=(piles[i] + mid -1)/mid;
         }
         return hours<=h;
     }
