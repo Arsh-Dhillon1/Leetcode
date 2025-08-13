@@ -1,17 +1,19 @@
 class Solution {
 public:
     int search(vector<int>& arr, int target) {
-        int low=0,high=arr.size() - 1;
+        long size=arr.size();
+        long low=0;
+        long high=size-1;
         while(low<=high){
-            int mid=(low+high)/2;
-            if(arr[mid]==target){
+            long mid=(low+high)/2;
+            if(target==arr[mid]){
                 return mid;
             }
-            else if(arr[mid]>target){
-                high=mid-1;
-            }
             else if(arr[mid]<target){
-                low=mid+1;
+                low=1+mid;
+            }
+            else{
+                high=mid-1;
             }
         }
         return -1;
