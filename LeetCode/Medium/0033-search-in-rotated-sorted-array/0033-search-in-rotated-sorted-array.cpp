@@ -19,7 +19,7 @@ public:
     int minIndex(vector<int>& arr, int low, int high){
         int n=arr.size();
         int index=-1;
-        if (arr[low] <= arr[high]) return low; // already sorted
+        if (arr[low] <= arr[high]) return low;
         while(low<=high){
             int mid=(low+high)/2;
             int prev=(mid+n-1)%n;
@@ -27,7 +27,7 @@ public:
             if(arr[mid]<=arr[prev] && arr[mid]<=arr[next]){
                 return mid;
             }
-            else if(arr[0]<=arr[mid]){
+            else if(arr[low]<=arr[mid]){
                 low=mid+1;
             }
             else{
