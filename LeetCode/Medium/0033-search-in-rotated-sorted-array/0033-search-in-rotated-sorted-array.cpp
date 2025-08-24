@@ -27,7 +27,7 @@ public:
             if(arr[mid]<=arr[prev] && arr[mid]<=arr[next]){
                 return mid;
             }
-            else if(arr[low]<=arr[mid]){
+            else if(arr[0]<=arr[mid]){
                 low=mid+1;
             }
             else{
