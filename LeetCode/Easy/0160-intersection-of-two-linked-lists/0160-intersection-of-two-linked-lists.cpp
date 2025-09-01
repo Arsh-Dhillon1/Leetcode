@@ -1,37 +1,49 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
 class Solution {
 public:
-    int getLength(ListNode* head) {
-        int len = 0;
-        while (head != nullptr) {
+    int findLength(ListNode* start){
+        int len=0;
+        while(start!=nullptr){
             len++;
-            head = head->next;
+            start=start->next;
         }
         return len;
     }
-
-    ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) {
-        int lenA = getLength(headA);
-        int lenB = getLength(headB);
-
-        // Skip nodes in longer list
-        while (lenA > lenB) {
-            headA = headA->next;
-            lenA--;
-        }
-        while (lenB > lenA) {
-            headB = headB->next;
-            lenB--;
-        }
-
-        // Now both lists have same remaining length
-        while (headA != nullptr && headB != nullptr) {
-            if (headA == headB) {
-                return headA;  // Intersection point
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        int a=findLength(headA);
+        int b=findLength(headB);
+        int diff=0;
+        // if(headA==nullptr) return headB;  
+        // if(headB==nullptr) return headB;  
+        if(a>b){
+            diff=a-b;
+            for(int i=0;i<diff;i++){
+                headA=headA->next;
             }
-            headA = headA->next;
-            headB = headB->next;
         }
-
-        return nullptr;  // No intersection
+        else{
+            diff=b-a;
+            for(int i=0;i<diff;i++){
+                headB=headB->next;
+            }
+            
+        }
+        while(headA!=nullptr && headB!=nullptr){
+            if(headA==headB){
+                return headA;
+            }
+            else{
+                headA=headA->next;
+                headB=headB->next;
+            }
+        }
+        return nullptr;
     }
 };
